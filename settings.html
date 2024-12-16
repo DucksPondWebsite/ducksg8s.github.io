@@ -115,6 +115,23 @@
         .preset-list a:hover {
             text-decoration: underline;
         }
+
+        .cloak-checkbox-container {
+            position: absolute;
+            top: 70%;
+            left: 15%;
+            display: flex;
+            align-items: center;
+        }
+
+        .cloak-checkbox {
+            margin-right: 10px;
+        }
+
+        .cloak-checkbox-label {
+            font-size: 1em;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -134,6 +151,11 @@
             <a href="#" data-preset="Quizlet">Quizlet</a>
             <a href="#" data-preset="Edpuzzle">Edpuzzle</a>
         </div>
+    </div>
+
+    <div class="cloak-checkbox-container">
+        <input type="checkbox" id="cloakCheckbox" class="cloak-checkbox">
+        <label for="cloakCheckbox" class="cloak-checkbox-label">Cloak Tab as Google when inactive</label>
     </div>
 
     <script>
@@ -196,6 +218,34 @@
             if (target.tagName === 'A') {
                 const preset = target.getAttribute('data-preset');
                 document.title = preset;
+            }
+        });
+
+        // Cloak tab functionality
+        const cloakCheckbox = document.getElementById('cloakCheckbox');
+        let originalTitle = document.title;
+        let originalFavicon = document.querySelector('link[rel="icon"]');
+
+        window.addEventListener('blur', function() {
+            if (cloakCheckbox.checked) {
+                document.title = 'Google';
+                if (originalFavicon) {
+                    originalFavicon.href = 'https://www.google.com/favicon.ico';
+                } else {
+                    const link = document.createElement('link');
+                    link.rel = 'icon';
+                    link.href = 'https://www.google.com/favicon.ico';
+                    document.head.appendChild(link);
+                }
+            }
+        });
+
+        window.addEventListener('focus', function() {
+            if (cloakCheckbox.checked) {
+                document.title = originalTitle;
+                if (originalFavicon) {
+                    originalFavicon.href = 'path/to/your/favicon.ico'; // Update this path to your original favicon
+                }
             }
         });
     </script>
