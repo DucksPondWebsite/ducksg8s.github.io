@@ -7,16 +7,18 @@
     <style>
         body {
             margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, maroon, yellow);
             background-size: 200% 200%;
             animation: pulse 5s infinite;
             color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden;
         }
 
         @keyframes pulse {
@@ -34,6 +36,7 @@
         h1 {
             font-size: 3em;
             font-weight: bold;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
 
@@ -43,13 +46,12 @@
             gap: 20px;
             width: 100%;
             max-width: 1200px;
-            margin-bottom: 20px;
         }
 
         .app-slot {
             width: 100%;
             padding-top: 100%; /* Maintain aspect ratio */
-            background-color: transparent;
+            background-color: rgba(0, 0, 0, 0.5);
             position: relative;
             border-radius: 10px;
             overflow: hidden;
@@ -61,7 +63,7 @@
         }
 
         .app-slot:hover {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .app-slot::before {
@@ -73,21 +75,16 @@
             font-size: 1.2em;
             color: white;
             text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .app-slot:hover::before {
-            opacity: 1;
         }
 
         .logo-slot {
             width: 100%;
-            padding-top: 30%; /* Adjust aspect ratio for logo */
-            background-color: transparent;
+            padding-top: 20%; /* Adjust aspect ratio for logo */
+            background-color: rgba(0, 0, 0, 0.5);
             position: relative;
             border-radius: 10px;
             overflow: hidden;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -96,7 +93,7 @@
         }
 
         .logo-slot:hover {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .logo-slot::before {
@@ -108,47 +105,29 @@
             font-size: 1.2em;
             color: white;
             text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
-        .logo-slot:hover::before {
-            opacity: 1;
-        }
-
-        .cover-screen {
+        .fade-screen {
             display: none;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #282c34;
-            color: white;
-            font-size: 3em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: black;
             z-index: 10;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
 
-        .cover-screen.active {
-            display: flex;
-            animation: slideUp 0.5s forwards;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
+        .fade-screen.active {
+            display: block;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <div class="cover-screen" id="cover-screen"></div>
+    <div class="fade-screen" id="fade-screen"></div>
     <h1>Apps</h1>
     <div class="app-container">
         <div class="app-slot" data-text="$30 Website" onclick="redirect('30-website.html')"></div>
@@ -164,9 +143,8 @@
 
     <script>
         function redirect(url) {
-            const coverScreen = document.getElementById('cover-screen');
-            coverScreen.classList.add('active');
-            coverScreen.innerText = `Redirecting to ${url}`;
+            const fadeScreen = document.getElementById('fade-screen');
+            fadeScreen.classList.add('active');
             setTimeout(() => {
                 window.location.href = url;
             }, 500);
