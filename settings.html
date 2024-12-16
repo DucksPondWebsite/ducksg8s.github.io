@@ -69,6 +69,54 @@
         .url-input::placeholder {
             color: #777;
         }
+
+        .preset-label {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #ccc; /* Lighter grey for the label */
+        }
+
+        .preset-button {
+            position: absolute;
+            top: 60%;
+            left: 15%;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .preset-button:hover {
+            background-color: #21a1f1;
+        }
+
+        .preset-list {
+            position: absolute;
+            top: 65%;
+            left: 15%;
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .preset-list a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+
+        .preset-list a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +124,18 @@
     <div class="url-input-container">
         <div class="url-input-label">Link Cloaking; Change the url to whatever you want.</div>
         <input type="text" id="urlInput" class="url-input" placeholder="Make sure your url ends with .net or .com for it to work">
+        <div class="preset-label">Tab Cloak; Change your tab name!</div>
+        <button class="preset-button" id="presetButton">Set Preset</button>
+        <div class="preset-list" id="presetList">
+            <a href="#" data-preset="Google.com">Google</a>
+            <a href="#" data-preset="New Tab">New Tab</a>
+            <a href="#" data-preset="Desmos | Graphing Calculator">Desmos | Graphing Calculator</a>
+            <a href="#" data-preset="Khan Academy">Khan Academy</a>
+            <a href="#" data-preset="Canvas">Canvas</a>
+            <a href="#" data-preset="Quizziz">Quizziz</a>
+            <a href="#" data-preset="Quizlet">Quizlet</a>
+            <a href="#" data-preset="Edpuzzle">Edpuzzle</a>
+        </div>
     </div>
 
     <script>
@@ -110,6 +170,34 @@
         urlInput.addEventListener('blur', function() {
             if (urlInput.value === '') {
                 urlInput.placeholder = 'Make sure your url ends with .net or .com for it to work';
+            }
+        });
+
+        // Preset button functionality
+        const presetButton = document.getElementById('presetButton');
+        const presetList = document.getElementById('presetList');
+
+        presetButton.addEventListener('mouseover', function() {
+            presetList.style.display = 'flex';
+        });
+
+        presetButton.addEventListener('mouseout', function() {
+            presetList.style.display = 'none';
+        });
+
+        presetList.addEventListener('mouseover', function() {
+            presetList.style.display = 'flex';
+        });
+
+        presetList.addEventListener('mouseout', function() {
+            presetList.style.display = 'none';
+        });
+
+        presetList.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target.tagName === 'A') {
+                const preset = target.getAttribute('data-preset');
+                document.title = preset;
             }
         });
     </script>
