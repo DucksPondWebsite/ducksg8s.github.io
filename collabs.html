@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborations</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #F9D423 0%, #FF4E50 100%);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .collaborations-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .collab-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .collab-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .collab-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .collab-name {
+            position: absolute;
+            bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .collab-item:hover .collab-name {
+            opacity: 1;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .collaborations-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Collaborations</h1>
+    <div class="collaborations-container">
+        <div class="collab-item">
+            <img src="https://imgproxy.fourthwall.com/xHB3XLn5RV2Kea5xkMr77J8DZV2yS8dGJ4ovXZzcfWA/w:900/sm:1/enc/OGQzM2I5NTAwODQ4/YTQ2ZB_m22C5rL6o/JQbxxe1x2q_zCmtK/p_3MPQDqz6OJ2L85/eJBVGOxpWL1Eu8e7/TROEbarPTvs7ZpgL/-RaGThFbPgRZcSCd/16vMuqG8c_oy04VJ/8O-KLLgRHneuPstm/SEmpb-FiBPxoB3uc/a3CypwMoh3xAiNBH/lZaiNQhOjRtqiW46/ODWQNADdaUo-iJHl/dF9DgOPd56iTa5VY/dSPaRtFZq-0.webp" alt="Selenite">
+            <div class="collab-name">Selenite</div>
+        </div>
+        <div class="collab-item">
+            <img src="https://ugc.production.linktr.ee/9030f29a-10ff-4cae-bf9c-b429611d14c7_Screenshot-2024-10-28-2.37.41-PM.png?io=true&size=avatar-v3_0" alt="Alvin Games">
+            <div class="collab-name">Alvin Games</div>
+        </div>
+        <div class="collab-item">
+            <img src="https://lh7-us.googleusercontent.com/5Fbqj024fM1jyET0B-xC-r_j93ktHdB5dYlB80U7oxpfzefa3nFPjxwdbgE9LgwVN6URIpbowiYLJg376qRm2cPd3eD8h0ot8aeosM6xb2uZaWLIATnAah--MUM1RNliv8znm8Yv2VTfPR5n_1JpwzarFulfpQ" alt="Classroom.IT">
+            <div class="collab-name">Classroom.IT</div>
+        </div>
+        <div class="collab-item">
+            <img src="https://classroom-6x.io/images/site-logo.png" alt="Classroom 6X">
+            <div class="collab-name">Classroom 6X</div>
+        </div>
+        <div class="collab-item">
+            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQF6yYiVYPax8g/company-logo_200_200/company-logo_200_200/0/1669053772627/void_gamesnet_logo?e=2147483647&v=beta&t=TA8UzyR1_-Km8lSOIEmC-vJinrjLCx3IwPMh1ivmi1k" alt="Void.net">
+            <div class="collab-name">Void.net</div>
+        </div>
+        <div class="collab-item">
+            <img src="https://mexismath.firebaseapp.com/3dgifmaker42751.gif" alt="Mexi Math">
+            <div class="collab-name">Mexi Math</div>
+        </div>
+        <div class="collab-item">
+            <img src="https://glacierarcade.win/assets/img/glacierarcade.png" alt="Glacier Arcade">
+            <div class="collab-name">Glacier Arcade</div>
+        </div>
+    </div>
+</body>
+</html>
