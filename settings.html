@@ -188,4 +188,66 @@
         });
 
         urlInput.addEventListener('blur', function() {
-            if (urlInput.value
+            if (urlInput.value === '') {
+                urlInput.placeholder = 'Make sure your url ends with .net or .com for it to work';
+            }
+        });
+
+        // Preset button functionality
+        const presetButton = document.getElementById('presetButton');
+        const presetList = document.getElementById('presetList');
+
+        presetButton.addEventListener('mouseover', function() {
+            presetList.style.display = 'flex';
+        });
+
+        presetButton.addEventListener('mouseout', function() {
+            presetList.style.display = 'none';
+        });
+
+        presetList.addEventListener('mouseover', function() {
+            presetList.style.display = 'flex';
+        });
+
+        presetList.addEventListener('mouseout', function() {
+            presetList.style.display = 'none';
+        });
+
+        presetList.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target.tagName === 'A') {
+                const preset = target.getAttribute('data-preset');
+                document.title = preset;
+            }
+        });
+
+        // Cloak tab functionality
+        const cloakCheckbox = document.getElementById('cloakCheckbox');
+        let originalTitle = document.title;
+        let originalFavicon = document.querySelector('link[rel="icon"]');
+
+        window.addEventListener('blur', function() {
+            if (cloakCheckbox.checked) {
+                document.title = 'Google';
+                if (originalFavicon) {
+                    originalFavicon.href = 'https://www.google.com/favicon.ico';
+                } else {
+                    const link = document.createElement('link');
+                    link.rel = 'icon';
+                    link.href = 'https://www.google.com/favicon.ico';
+                    document.head.appendChild(link);
+                }
+            }
+        });
+
+        window.addEventListener('focus', function() {
+            if (cloakCheckbox.checked) {
+                document.title = originalTitle;
+                if (originalFavicon) {
+                    originalFavicon.href = 'path/to/your/favicon.ico'; // Update this path to your original favicon
+                }
+            }
+        });
+    </script>
+</body>
+</html>
