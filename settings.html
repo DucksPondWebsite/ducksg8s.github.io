@@ -9,6 +9,7 @@
             margin: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color: #1c1c1c; /* Greyish black background */
@@ -41,13 +42,38 @@
                 transform: translateX(100vw);
             }
         }
+
+        .url-input-container {
+            position: absolute;
+            top: 50%;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .url-input::placeholder {
+            color: #777;
+        }
     </style>
 </head>
 <body>
     <div class="header">Welcome To Settings</div>
+    <div class="url-input-container">
+        <input type="text" id="urlInput" class="url-input" placeholder="Make sure your url ends with .net or .com for it to work">
+    </div>
 
     <script>
-        const lineCount = 20; // Number of lines
+        // Creating sliding lines
+        const lineCount = 20;
         for (let i = 0; i < lineCount; i++) {
             const line = document.createElement('div');
             line.className = 'line';
@@ -55,6 +81,29 @@
             line.style.animationDelay = `${Math.random() * 5}s`;
             document.body.appendChild(line);
         }
+
+        // URL change functionality
+        const urlInput = document.getElementById('urlInput');
+        urlInput.addEventListener('input', function() {
+            const inputValue = urlInput.value;
+            const regex = /\.(net|com)$/;
+
+            if (regex.test(inputValue)) {
+                window.history.replaceState({}, '', inputValue);
+            }
+        });
+
+        // Placeholder behavior
+        urlInput.addEventListener('focus', function() {
+            urlInput.placeholder = '';
+        });
+
+        urlInput.addEventListener('blur', function() {
+            if (urlInput.value === '') {
+                urlInput.placeholder = 'Make sure your url ends with .net or .com for it to work';
+            }
+        });
     </script>
 </body>
 </html>
+
