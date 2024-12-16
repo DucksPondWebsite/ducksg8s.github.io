@@ -92,10 +92,26 @@
             font-size: 1.2em;
         }
 
+        .quote-container {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            background: transparent;
+        }
+
+        .quote {
+            color: white;
+            font-size: 1em; /* Make the text small */
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     </style>
 </head>
 <body>
+    <div class="quote-container">
+        <h1 id="quote" class="quote"></h1>
+    </div>
     <h1>Ducks Pond Github Version</h1>
     <div class="buttons-container">
         <div class="button-container">
@@ -114,6 +130,36 @@
     <div class="fun-text">click the ducks (it's fun)</div>
 
     <script>
+        const quotes = [
+            "What is a... Ducks Pond? - Teachers",
+            "When is the official version of Ducks Pond coming out? - literally everyone (2024)",
+            "hey look at this *aggressively points to computer screen*. - Dante",
+            "Guess what cologne I'm wearing. - Dante",
+            "Do your fucking work! - Me",
+            "Urgh, wat da fuk - Dalton Trey",
+            "ah! my ears burn..",
+            "It's time to have some fun... With Uncle Samsonite",
+            "If Silas Randolph sees this... COMB YOUR FUCKING HAIR!!!",
+            "I will not discriminate with any other game website",
+            "Alt links posted soon",
+            "SHUT UP ABOUT FOOTBALL BROS, I JUST WANT PEACE",
+            "You're my favorite - My Girlfriend (Kaylee)",
+            "Mikael Myer",
+            "Boo? Whachu lookin at?! - Carlotta",
+            "HEY HEy, hEy, hey... guess what? I'm gonna touch you.",
+            "Me when, whe- me when th- the.. me- whe- the me- me when the- Yeah!"
+        ];
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+
+        const quote = getRandomQuote(); // Get a random quote
+
+        // Update header text
+        document.querySelector('#quote').innerHTML = quote;
+
         function createDuck() {
             const duck = document.createElement('div');
             duck.className = 'duck';
