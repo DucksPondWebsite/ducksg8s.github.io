@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, maroon, yellow);
+            background-size: 200% 200%;
+            animation: pulse 5s infinite;
+            color: white;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .app-slot {
+            width: 100%;
+            padding-top: 100%; /* Maintain aspect ratio */
+            background-color: #444;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .app-slot:hover {
+            background-color: #555;
+        }
+
+        .app-slot::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .app-slot:hover::before {
+            opacity: 1;
+        }
+
+        .logo-slot {
+            width: 100%;
+            padding-top: 30%; /* Adjust aspect ratio for logo */
+            background-color: #444;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logo-slot:hover {
+            background-color: #555;
+        }
+
+        .logo-slot::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .logo-slot:hover::before {
+            opacity: 1;
+        }
+
+        .cover-screen {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #282c34;
+            color: white;
+            font-size: 3em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .cover-screen.active {
+            display: flex;
+            animation: slideUp 0.5s forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-screen" id="cover-screen"></div>
+    <h1>Apps</h1>
+    <div class="app-container">
+        <div class="app-slot" data-text="$30 Website" onclick="redirect('30-website.html')"></div>
+        <div class="app-slot" data-text="Soundboard" onclick="redirect('soundboard.html')"></div>
+        <div class="app-slot" data-text="Fake Spotify" onclick="redirect('fake-spotify.html')"></div>
+        <div class="app-slot" data-text="Fake Youtube" onclick="redirect('fake-youtube.html')"></div>
+        <div class="app-slot" data-text="Incognito" onclick="redirect('incognito.html')"></div>
+        <div class="app-slot" data-text="Copilot" onclick="redirect('copilot.html')"></div>
+        <div class="app-slot" data-text="Windows 11" onclick="redirect('windows-11.html')"></div>
+        <div class="app-slot" data-text="Ducks Films" onclick="redirect('ducks-films.html')"></div>
+    </div>
+    <div class="logo-slot" data-text="Gameboy Advance Emulator" onclick="redirect('gameboy-advance-emulator.html')"></div>
+
+    <script>
+        function redirect(url) {
+            const coverScreen = document.getElementById('cover-screen');
+            coverScreen.classList.add('active');
+            coverScreen.innerText = `Redirecting to ${url}`;
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
