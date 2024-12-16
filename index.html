@@ -17,6 +17,7 @@
             font-family: 'Press Start 2P', cursive; /* Pixel font */
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         h1 {
@@ -79,19 +80,11 @@
             opacity: 1;
         }
 
-        .ripple {
+        .duck {
             position: absolute;
-            border-radius: 50%;
-            background: rgba(0, 0, 255, 0.5);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-        }
-
-        @keyframes ripple {
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
+            font-size: 2em;
+            cursor: pointer;
+            transition: opacity 0.3s;
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -115,17 +108,32 @@
     </div>
 
     <script>
-        document.body.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple';
-            ripple.style.left = `${e.clientX}px`;
-            ripple.style.top = `${e.clientY}px`;
-            document.body.appendChild(ripple);
+        function createDuck() {
+            const duck = document.createElement('div');
+            duck.className = 'duck';
+            duck.innerHTML = '🦆';
+            positionDuck(duck);
+            document.body.appendChild(duck);
 
-            ripple.addEventListener('animationend', () => {
-                ripple.remove();
+            duck.addEventListener('click', () => {
+                duck.style.opacity = 0;
+                setTimeout(() => {
+                    positionDuck(duck);
+                    duck.style.opacity = 1;
+                }, 3000);
             });
-        });
+        }
+
+        function positionDuck(duck) {
+            const x = Math.random() * (window.innerWidth - 40);
+            const y = Math.random() * (window.innerHeight - 40);
+            duck.style.left = `${x}px`;
+            duck.style.top = `${y}px`;
+        }
+
+        for (let i = 0; i < 5; i++) {
+            createDuck();
+        }
     </script>
 </body>
 </html>
