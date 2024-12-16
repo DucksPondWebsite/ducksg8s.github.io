@@ -23,7 +23,12 @@
             margin-bottom: 20px;
         }
 
-        .controller-button {
+        .button-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .controller-button, .collab-button, .updates-button {
             font-size: 3em;
             background-color: #61dafb;
             border: none;
@@ -32,15 +37,41 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            margin: 10px;
             transition: background-color 0.3s;
+            position: relative;
         }
 
-        .controller-button:hover {
+        .controller-button:hover, .collab-button:hover, .updates-button:hover {
             background-color: #21a1f1;
         }
 
-        .controller-button:focus {
+        .controller-button:focus, .collab-button:focus, .updates-button:focus {
             outline: none;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            width: 120px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the button */
+            left: 50%;
+            margin-left: -60px; /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8em;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -48,6 +79,18 @@
 </head>
 <body>
     <h1>Ducks Pond Github Version</h1>
-    <a href="subpage.html" class="controller-button">🎮</a>
+    <div class="button-container">
+        <a href="subpage.html" class="controller-button">🎮</a>
+        <div class="tooltip">Game Selection</div>
+    </div>
+    <div class="button-container">
+        <a href="collabs.html" class="collab-button">👤</a>
+        <div class="tooltip">Collaborations</div>
+    </div>
+    <div class="button-container">
+        <a href="updates.html" class="updates-button">🔄</a>
+        <div class="tooltip">Updates</div>
+    </div>
 </body>
 </html>
+
