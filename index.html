@@ -13,9 +13,11 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #F9D423 0%, #FF4E50 100%);
+            background-size: 200% 200%;
             color: white;
             font-family: 'Press Start 2P', cursive; /* Pixel font */
             text-align: center;
+            overflow: hidden;
         }
 
         h1 {
@@ -78,6 +80,27 @@
             opacity: 1;
         }
 
+        .duck {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://twemoji.maxcdn.com/v/13.1.0/72x72/1f986.png');
+            background-size: cover;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0);
+            }
+            50% {
+                transform: translateY(-200px) translateX(200px) rotate(360deg);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(0);
+            }
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     </style>
 </head>
@@ -97,5 +120,10 @@
             <div class="tooltip">Updates</div>
         </div>
     </div>
+    <div class="duck" style="top: 10%; left: 20%;"></div>
+    <div class="duck" style="top: 30%; left: 50%;"></div>
+    <div class="duck" style="top: 50%; left: 80%;"></div>
+    <div class="duck" style="top: 70%; left: 30%;"></div>
+    <div class="duck" style="top: 90%; left: 70%;"></div>
 </body>
 </html>
