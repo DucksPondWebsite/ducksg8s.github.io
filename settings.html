@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1c1c1c; /* Greyish black background */
+            overflow: hidden;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            position: absolute;
+            top: 10%;
+            font-size: 2em;
+            text-align: center;
+            width: 100%;
+        }
+
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.2);
+            animation: slide 5s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Welcome To Settings</div>
+
+    <script>
+        const lineCount = 20; // Number of lines
+        for (let i = 0; i < lineCount; i++) {
+            const line = document.createElement('div');
+            line.className = 'line';
+            line.style.left = `${Math.random() * 100}vw`;
+            line.style.animationDelay = `${Math.random() * 5}s`;
+            document.body.appendChild(line);
+        }
+    </script>
+</body>
+</html>
