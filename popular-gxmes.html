@@ -12,8 +12,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(0deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
-            background-size: 140% 140%;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            background-size: 400% 400%;
             animation: rainbow 10s ease infinite;
             font-family: Arial, sans-serif;
             color: white;
@@ -44,7 +44,6 @@
         }
 
         .game-square {
-            position: relative;
             width: 150px;
             height: 150px;
             background-color: #61dafb;
@@ -54,11 +53,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.2s;
-        }
-
-        .game-square:hover {
-            transform: scale(1.1);
         }
 
         .game-square img {
@@ -66,43 +60,22 @@
             height: 100%;
             object-fit: cover;
         }
-
-        .game-name {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-align: center;
-            padding: 5px;
-            font-size: 14px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .game-square:hover .game-name {
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
     <div class="header">Popular Games</div>
     <div class="container">
         <div class="game-square">
-            <img src="https://geometrydash-game.io/cache/data/image/game/polytrack-m150x150.webp" alt="Game 1">
-            <div class="game-name">Poly Track</div>
+            <img src="https://example.com/game1.jpg" alt="Game 1">
         </div>
         <div class="game-square">
-            <img src="https://static.wikia.nocookie.net/smash-karts/images/f/fb/Screenshot_2023-04-24_at_10.05.21_AM.png/revision/latest?cb=20230424150551.png" alt="Game 2">
-            <div class="game-name">Smash Karts</div>
+            <img src="https://example.com/game2.jpg" alt="Game 2">
         </div>
         <div class="game-square">
-            <img src="https://www5.minijuegosgratis.com/v3/games/thumbnails/247701_7_sq.jpg" alt="Game 3">
-            <div class="game-name">Sandtrix</div>
+            <img src="https://example.com/game3.jpg" alt="Game 3">
         </div>
         <div class="game-square">
-            <img src="https://red-ball4.com/data/image/slope-game.png" alt="Game 4">
-            <div class="game-name">Slope</div>
+            <img src="https://example.com/game4.jpg" alt="Game 4">
         </div>
     </div>
 </body>
