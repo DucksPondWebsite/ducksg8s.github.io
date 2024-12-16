@@ -23,6 +23,12 @@
             margin-bottom: 20px;
         }
 
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Adjust the gap between buttons as needed */
+        }
+
         .button-container {
             position: relative;
             display: inline-block;
@@ -37,9 +43,7 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            margin: 10px;
             transition: background-color 0.3s;
-            position: relative;
         }
 
         .controller-button:hover, .collab-button:hover, .updates-button:hover {
@@ -79,18 +83,6 @@
 </head>
 <body>
     <h1>Ducks Pond Github Version</h1>
-    <div class="button-container">
-        <a href="subpage.html" class="controller-button">🎮</a>
-        <div class="tooltip">Game Selection</div>
-    </div>
-    <div class="button-container">
-        <a href="collabs.html" class="collab-button">👤</a>
-        <div class="tooltip">Collaborations</div>
-    </div>
-    <div class="button-container">
-        <a href="updates.html" class="updates-button">🔄</a>
-        <div class="tooltip">Updates</div>
-    </div>
-</body>
-</html>
-
+    <div class="buttons-container">
+        <div class="button-container">
+            <a href="subpage
