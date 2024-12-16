@@ -149,8 +149,13 @@
                 window.location.href = url;
             }, 1000); // Adjusted delay to ensure smooth transition
         }
+
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                const fadeScreen = document.getElementById('fade-screen');
+                fadeScreen.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
-
-
