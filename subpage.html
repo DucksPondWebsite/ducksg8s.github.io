@@ -12,8 +12,16 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #282c34;
+            background: linear-gradient(45deg, yellow, red, orange);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             font-family: Arial, sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
@@ -24,8 +32,8 @@
 
         .game-square {
             position: relative;
-            width: 200px; /* Increase the width */
-            height: 200px; /* Increase the height */
+            width: 200px;
+            height: 200px;
             background-color: #61dafb;
             border-radius: 10px;
             overflow: hidden;
