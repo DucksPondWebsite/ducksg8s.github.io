@@ -131,8 +131,22 @@
         }
 
         function positionDuck(duck) {
-            const x = Math.random() * (window.innerWidth - 40);
-            const y = Math.random() * (window.innerHeight - 40);
+            const buttons = document.querySelectorAll('.controller-button, .collab-button, .updates-button, .fun-text');
+            let x, y, overlap;
+
+            do {
+                overlap = false;
+                x = Math.random() * (window.innerWidth - 40);
+                y = Math.random() * (window.innerHeight - 40);
+
+                buttons.forEach(button => {
+                    const rect = button.getBoundingClientRect();
+                    if (x + 40 > rect.left && x < rect.right && y + 40 > rect.top && y < rect.bottom) {
+                        overlap = true;
+                    }
+                });
+            } while (overlap);
+
             duck.style.left = `${x}px`;
             duck.style.top = `${y}px`;
         }
