@@ -109,11 +109,11 @@
             color: white;
             text-decoration: none;
             padding: 5px 0;
-            cursor: pointer.
+            cursor: pointer;
         }
 
         .preset-list a:hover {
-            text-decoration: underline.
+            text-decoration: underline;
         }
 
         .cloak-checkbox-container {
@@ -121,35 +121,35 @@
             top: 70%;
             left: 15%;
             display: flex;
-            align-items: center.
+            align-items: center;
         }
 
         .cloak-checkbox {
-            margin-right: 10px.
+            margin-right: 10px;
         }
 
         .cloak-checkbox-label {
-            font-size: 1em.
-            color: #ccc.
+            font-size: 1em;
+            color: #ccc;
         }
 
         /* New Home Button Styles */
         .home-button {
-            position: absolute.
-            top: 10px.
-            left: 10px.
-            padding: 10px 20px.
-            font-size: 1em.
-            background-color: #61dafb.
-            border: none.
-            border-radius: 5px.
-            cursor: pointer.
-            transition: background-color 0.3s.
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
             z-index: 1000; /* Ensure the button is on top of other elements */
         }
 
         .home-button:hover {
-            background-color: #21a1f1.
+            background-color: #21a1f1;
         }
     </style>
 </head>
@@ -177,7 +177,7 @@
 
     <div class="cloak-checkbox-container">
         <input type="checkbox" id="cloakCheckbox" class="cloak-checkbox">
-        <label for="cloakCheckbox" class="cloak-checkbox-label">Cloak Tab as Google when inactive</label>
+        <label for="cloakCheckbox" class="cloak-checkbox-label">Cloak Tab as Google when on other tabs</label>
     </div>
 
     <script>
@@ -187,86 +187,86 @@
         }
 
         // Creating sliding lines
-        const lineCount = 20.
+        const lineCount = 20;
         for (let i = 0; i < lineCount; i++) {
-            const line = document.createElement('div').
-            line.className = 'line'.
-            line.style.left = `${Math.random() * 100}vw`.
-            line.style.animationDelay = `${Math.random() * 5}s`.
-            document.body.appendChild(line).
+            const line = document.createElement('div');
+            line.className = 'line';
+            line.style.left = `${Math.random() * 100}vw`;
+            line.style.animationDelay = `${Math.random() * 5}s`;
+            document.body.appendChild(line);
         }
 
         // URL change functionality
-        const urlInput = document.getElementById('urlInput').
+        const urlInput = document.getElementById('urlInput');
         urlInput.addEventListener('input', function() {
-            const inputValue = urlInput.value.
-            const regex = /\.(net|com)$/.
+            const inputValue = urlInput.value;
+            const regex = /\.(net|com)$/;
 
             if (regex.test(inputValue)) {
-                const baseUrl = window.location.origin.
-                const newUrl = `${baseUrl}/${inputValue}`.
-                window.history.replaceState({}, '', newUrl).
+                const baseUrl = window.location.origin;
+                const newUrl = `${baseUrl}/${inputValue}`;
+                window.history.replaceState({}, '', newUrl);
             }
         });
 
         // Placeholder behavior
         urlInput.addEventListener('focus', function() {
-            urlInput.placeholder = ''.
+            urlInput.placeholder = '';
         });
 
         urlInput.addEventListener('blur', function() {
             if (urlInput.value === '') {
-                urlInput.placeholder = 'Make sure your url ends with .net or .com for it to work'.
+                urlInput.placeholder = '  Make sure your url ends with .net or .com for it to work';
             }
         });
 
         // Preset button functionality
-        const presetButton = document.getElementById('presetButton').
-        const presetList = document.getElementById('presetList').
+        const presetButton = document.getElementById('presetButton');
+        const presetList = document.getElementById('presetList');
 
         presetButton.addEventListener('mouseover', function() {
-            presetList.style.display = 'flex'.
+            presetList.style.display = 'flex';
         });
 
         presetButton.addEventListener('mouseout', function() {
-            presetList.style.display = 'none'.
+            presetList.style.display = 'none';
         });
 
         presetList.addEventListener('mouseover', function() {
-            presetList.style.display = 'flex'.
+            presetList.style.display = 'flex';
         });
 
         presetList.addEventListener('mouseout', function() {
-            presetList.style.display = 'none'.
+            presetList.style.display = 'none';
         });
 
         presetList.addEventListener('click', function(event) {
-            const target = event.target.
+            const target = event.target;
             if (target.tagName === 'A') {
-                const preset = target.getAttribute('data-preset').
-                document.title = preset.
+                const preset = target.getAttribute('data-preset');
+                document.title = preset;
             }
         });
 
         // Cloak tab functionality
-        const cloakCheckbox = document.getElementById('cloakCheckbox').
-        let originalTitle = document.title.
-        let originalFavicon = document.querySelector('link[rel="icon"]').
+        const cloakCheckbox = document.getElementById('cloakCheckbox');
+        let originalTitle = document.title;
+        let originalFavicon = document.querySelector('link[rel="icon"]');
 
         function cloakTab() {
-            document.title = 'Google'.
+            document.title = 'Google';
             if (originalFavicon) {
-                originalFavicon.href = 'https://www.google.com/favicon.ico'.
+                originalFavicon.href = 'https://www.google.com/favicon.ico';
             } else {
-                const link = document.createElement('link').
-                link.rel = 'icon'.
-                link.href = 'https://www.google.com/favicon.ico'.
-                document.head.appendChild(link).
+                const link = document.createElement('link');
+                link.rel = 'icon';
+                link.href = 'https://www.google.com/favicon.ico';
+                document.head.appendChild(link);
             }
         }
 
         function restoreTab() {
-            document.title = originalTitle.
+            document.title = originalTitle;
             if (originalFavicon) {
                 originalFavicon.href = '/path/to/your/favicon.ico'; // Update this path to your original favicon
             }
@@ -274,16 +274,17 @@
 
         window.addEventListener('blur', function() {
             if (cloakCheckbox.checked) {
-                localStorage.setItem('isCloaked', 'true').
-                cloakTab().
+                localStorage.setItem('isCloaked', 'true');
+                cloakTab();
             }
         });
 
         window.addEventListener('focus', function() {
             if (localStorage.getItem('isCloaked') === 'true') {
-                restoreTab().
-                localStorage.setItem('isCloaked', 'false').
+                restoreTab();
+                localStorage.setItem('isCloaked', 'false');
             }
         });
     </script>
-</[_{{{CITATION{{{_1{](https://github.com/Ktechen/Websiteinterface/tree/d7a862121881bc07572774b6e174e4de8f53e930/src%2Fsetting.php)[_{{{CITATION{{{_2{](https://github.com/SUCCmijnbolle/collectorsopdr/tree/7ab44394a2fae9a8f76b05922beb734505dd3491/Collector%2Fphp%2Fdashboard%2Fsettings.php)
+</body>
+</html>
