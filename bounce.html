@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spinning Circle with Growing Bouncing Ball</title>
-    <link rel="icon" type="image/gif" href="https://i.pinimg.com/originals/b4/7c/d2/b47cd2b6bf8013a82a0c8961d175c624.gif">
+    <link rel="icon" type="image/gif" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fc6823d6-4ca6-44ec-a9fb-1b81065d21fc/d9ciinh-d8aac82f-464a-4567-8409-468f3d358540.gif">
     <style>
         body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
         canvas { background: black; }
@@ -76,8 +76,8 @@
             ball.dx *= friction;
             ball.dy *= friction;
 
-            // Check if the ball escapes through the missing part and respawn
-            if (ball.y > canvas.height / 2 + circleRadius - 20 && ball.x > canvas.width / 2 - 20 && ball.x < canvas.width / 2 + 20) {
+            // Prevent the ball from escaping the circle
+            if (ballRadius > circleRadius - 20) {
                 ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 0, color: getRandomColor() };
                 ballRadius = initialBallRadius; // Reset ball size
             }
