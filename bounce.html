@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Ball in Circle</title>
+    <title>Spinning Circle with Rainbow Ball</title>
+    <link rel="icon" type="image/gif" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fc6823d6-4ca6-44ec-a9fb-1b81065d21fc/d9ciinh-d8aac82f-464a-4567-8409-468f3d358540.gif">
     <style>
         body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
         canvas { background: black; }
@@ -20,6 +21,8 @@
         const circleRadius = 200;
         const ballRadius = 20;
         const speed = 3;
+        const mass = 50;
+        let angle = 0;
         let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: speed, dy: speed, color: getRandomColor() };
 
         function getRandomColor() {
@@ -28,14 +31,17 @@
         }
 
         function drawCircle() {
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angle);
+            ctx.translate(-canvas.width / 2, -canvas.height / 2);
             ctx.beginPath();
             ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
             ctx.closePath();
             ctx.fillStyle = 'white';
             ctx.fill();
-            
-            // Draw the missing part at the bottom
             ctx.clearRect(canvas.width / 2 - 20, canvas.height / 2 + circleRadius - 20, 40, 40);
+            ctx.restore();
         }
 
         function drawBall() {
@@ -47,18 +53,17 @@
         }
 
         function updateBall() {
-            ball.x += ball.dx;
-            ball.y += ball.dy;
+            ball.x += ball.dx / mass;
+            ball.y += ball.dy / mass;
 
             const distance = Math.sqrt((ball.x - canvas.width / 2) ** 2 + (ball.y - canvas.height / 2) ** 2);
             if (distance > circleRadius - ballRadius) {
                 const angle = Math.atan2(ball.y - canvas.height / 2, ball.x - canvas.width / 2);
-                ball.dx = -Math.cos(angle) * speed;
-                ball.dy = -Math.sin(angle) * speed;
+                ball.dx = -Math.cos(angle) * speed * mass;
+                ball.dy = -Math.sin(angle) * speed * mass;
                 ball.color = getRandomColor();
             }
 
-            // Respawn if it escapes through the missing part
             if (ball.y > canvas.height / 2 + circleRadius - 20 && ball.x > canvas.width / 2 - 20 && ball.x < canvas.width / 2 + 20) {
                 ball = { x: canvas.width / 2, y: canvas.height / 2, dx: speed, dy: speed, color: getRandomColor() };
             }
@@ -69,6 +74,7 @@
             drawCircle();
             drawBall();
             updateBall();
+            angle += 0.01;
             requestAnimationFrame(animate);
         }
 
