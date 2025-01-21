@@ -20,11 +20,11 @@
 
         const circleRadius = 200;
         const ballRadius = 20;
-        const mass = 50;
+        const gravity = 0.5;
+        const bounceFactor = 0.7;
+        const friction = 0.99;
         let angle = 0;
-        const gravity = 0.1;
-        const damping = 0.9; // To simulate energy loss on bounce
-        let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 2, color: getRandomColor() };
+        let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 0, color: getRandomColor() };
 
         function getRandomColor() {
             const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
@@ -54,21 +54,26 @@
         }
 
         function updateBall() {
-            ball.dy += gravity / mass; // Apply gravity
+            ball.dy += gravity; // Apply gravity
             ball.x += ball.dx;
             ball.y += ball.dy;
 
+            // Check collision with circle perimeter
             const distance = Math.sqrt((ball.x - canvas.width / 2) ** 2 + (ball.y - canvas.height / 2) ** 2);
             if (distance > circleRadius - ballRadius) {
                 const angle = Math.atan2(ball.y - canvas.height / 2, ball.x - canvas.width / 2);
-                ball.dx = -Math.cos(angle) * damping * Math.abs(ball.dx);
-                ball.dy = -Math.sin(angle) * damping * Math.abs(ball.dy);
+                ball.dx = -Math.cos(angle) * Math.abs(ball.dx) * bounceFactor;
+                ball.dy = -Math.sin(angle) * Math.abs(ball.dy) * bounceFactor;
                 ball.color = getRandomColor();
             }
 
-            // Respawn if it escapes through the missing part
+            // Apply friction
+            ball.dx *= friction;
+            ball.dy *= friction;
+
+            // Check if the ball escapes through the missing part and respawn
             if (ball.y > canvas.height / 2 + circleRadius - 20 && ball.x > canvas.width / 2 - 20 && ball.x < canvas.width / 2 + 20) {
-                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 2, color: getRandomColor() };
+                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 0, color: getRandomColor() };
             }
         }
 
@@ -85,4 +90,5 @@
     </script>
 </body>
 </html>
+
 
