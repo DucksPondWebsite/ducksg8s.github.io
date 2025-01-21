@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinning Circle with Rainbow Ball</title>
+    <title>Spinning Circle with Realistic Bouncing Ball</title>
     <link rel="icon" type="image/gif" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fc6823d6-4ca6-44ec-a9fb-1b81065d21fc/d9ciinh-d8aac82f-464a-4567-8409-468f3d358540.gif">
     <style>
         body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
@@ -20,10 +20,11 @@
 
         const circleRadius = 200;
         const ballRadius = 20;
-        const speed = 3;
         const mass = 50;
         let angle = 0;
-        let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: speed, dy: speed, color: getRandomColor() };
+        const gravity = 0.1;
+        const damping = 0.9; // To simulate energy loss on bounce
+        let ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 2, color: getRandomColor() };
 
         function getRandomColor() {
             const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
@@ -53,19 +54,21 @@
         }
 
         function updateBall() {
-            ball.x += ball.dx / mass;
-            ball.y += ball.dy / mass;
+            ball.dy += gravity / mass; // Apply gravity
+            ball.x += ball.dx;
+            ball.y += ball.dy;
 
             const distance = Math.sqrt((ball.x - canvas.width / 2) ** 2 + (ball.y - canvas.height / 2) ** 2);
             if (distance > circleRadius - ballRadius) {
                 const angle = Math.atan2(ball.y - canvas.height / 2, ball.x - canvas.width / 2);
-                ball.dx = -Math.cos(angle) * speed * mass;
-                ball.dy = -Math.sin(angle) * speed * mass;
+                ball.dx = -Math.cos(angle) * damping * Math.abs(ball.dx);
+                ball.dy = -Math.sin(angle) * damping * Math.abs(ball.dy);
                 ball.color = getRandomColor();
             }
 
+            // Respawn if it escapes through the missing part
             if (ball.y > canvas.height / 2 + circleRadius - 20 && ball.x > canvas.width / 2 - 20 && ball.x < canvas.width / 2 + 20) {
-                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: speed, dy: speed, color: getRandomColor() };
+                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 2, color: getRandomColor() };
             }
         }
 
@@ -82,3 +85,4 @@
     </script>
 </body>
 </html>
+
