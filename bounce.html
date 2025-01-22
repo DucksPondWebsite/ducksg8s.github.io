@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinning Circle with Growing Bouncing Ball</title>
+    <title>Spinning Circle with Escaping Ball</title>
     <link rel="icon" type="image/gif" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fc6823d6-4ca6-44ec-a9fb-1b81065d21fc/d9ciinh-d8aac82f-464a-4567-8409-468f3d358540.gif">
     <style>
         body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
@@ -76,10 +76,16 @@
             ball.dx *= friction;
             ball.dy *= friction;
 
-            // Prevent the ball from escaping the circle
-            if (ballRadius > circleRadius - 20) {
-                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 0, color: getRandomColor() };
+            // Check if the ball escapes through the missing part
+            if (ball.y > canvas.height / 2 + circleRadius - 20 && ball.x > canvas.width / 2 - 20 && ball.x < canvas.width / 2 + 20) {
                 ballRadius = initialBallRadius; // Reset ball size
+                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 0, color: getRandomColor() };
+            }
+
+            // Check if the ball touches the border of the page and reset simulation
+            if (ball.x - ballRadius < 0 || ball.x + ballRadius > canvas.width || ball.y - ballRadius < 0 || ball.y + ballRadius > canvas.height) {
+                ballRadius = initialBallRadius; // Reset ball size
+                ball = { x: canvas.width / 2, y: canvas.height / 2, dx: 2, dy: 0, color: getRandomColor() };
             }
         }
 
