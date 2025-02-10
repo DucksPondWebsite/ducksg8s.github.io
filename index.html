@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ducks Game Search</title>
+    <title>Search Page</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: linear-gradient(to bottom, red, yellow, orange, hotpink);
@@ -44,15 +45,43 @@
             vertical-align: middle;
             margin-right: 10px;
         }
+
+        .toolbar {
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .toolbar-content {
+            display: none;
+            text-align: left;
+            margin-top: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
     </style>
 </head>
 <body>
     <div class="search-container">
+        <h1>Search Any Game You Want To Play</h1>
         <input type="text" id="searchInput" placeholder="Search...">
         <input type="button" value="Search" onclick="performSearch()">
         <div id="not-found">
-            <img src="https://i.imgur.com/yW2WUWb.png" alt="Aw Snap Face" width="50" height="50">
+            <img src="https://i.imgur.com/YY3iStV.png" alt="BSOD Face" width="50" height="50">
             <span>Not Found</span>
+        </div>
+        <div class="toolbar" onclick="toggleToolbar()">
+            <h2>These Games Don't Work</h2>
+        </div>
+        <div class="toolbar-content" id="toolbarContent">
+            <ul>
+                <li>Fortnite</li>
+                <li>Overwatch 2</li>
+                <li>Any Xbox Games</li>
+                <li>Any PlayStation Games</li>
+            </ul>
         </div>
     </div>
 
@@ -74,6 +103,15 @@
 
         function showNotFound() {
             document.getElementById('not-found').style.display = 'block';
+        }
+
+        function toggleToolbar() {
+            const toolbarContent = document.getElementById('toolbarContent');
+            if (toolbarContent.style.display === 'block') {
+                toolbarContent.style.display = 'none';
+            } else {
+                toolbarContent.style.display = 'block';
+            }
         }
     </script>
 </body>
